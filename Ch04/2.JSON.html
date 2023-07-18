@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.JSON</title>
+    <!--
+        날짜 : 2023/07/18
+        이름 : 최정민
+        내용 : 자바스크립트 JSON 실습하기
+    -->
+</head>
+<body>
+    <h3>2.JSON</h3>
+    <script>
+        // JSON 객체
+        const user = {
+            "uid": "a101",
+            "name": "김유신",
+            "hp": "010-2121-1001",
+            "age": 25
+        };
+
+        document.write('user : '+user+'<br>');
+        document.write('아이디 : '+user.uid + '<br>');
+        document.write('이름 : '+user.name + '<br>');
+        document.write('휴대폰 : '+user.hp + '<br>');
+        document.write('나이 : '+user.age + '<br>');
+
+        for(let k in user) {
+            document.write(k+' : '+user[k]+'<br>');
+        }
+
+        // JSON 객체 배열
+        const jsonData = {
+            "users" : [
+                {"uid": "a101", "name": "김유신", "hp": "010-1212-1001", "age": 25}, 
+                {"uid": "a102", "name": "김춘추", "hp": "010-1212-1002", "age": 23}, 
+                {"uid": "a103", "name": "장보고", "hp": "010-1212-1003", "age": 35}, 
+                {"uid": "a104", "name": "강감찬", "hp": "010-1212-1004", "age": 45}, 
+                {"uid": "a105", "name": "이순신", "hp": "010-1212-1005", "age": 55}]
+            };
+
+        for(let user of jsonData.users) {
+            document.write('<p>');
+            document.write('uid : '+user.uid+'<br>');
+            document.write('name : '+user.name+'<br>');
+            document.write('hp : '+user.hp+'<br>');
+            document.write('age : '+user.age+'<br>');
+            document.write('</p>');
+        }
+
+        // JSON 함수
+        const user1 = {"name": "김유신", "age": 25, "addr": "김해"};
+        let strUser1 = JSON.stringify(user1); // JSON 객체를 문자열로 변환
+
+        document.write('user1 : '+user1+ '<br>');
+        document.write('strUser1 : '+strUser1+ '<br>');
+        
+        let user2 = JSON.parse(strUser1); // JSON 문자열을 객체로 변환
+        
+        document.write('user2 : '+user2+ '<br>');
+        document.write('user2 name : '+user2.name+ '<br>');
+        document.write('user2 age : '+user2.age+ '<br>');
+        document.write('user2 addr : '+user2.addr+ '<br>');
+        
+
+    </script>
+    
+</body>
+</html>
