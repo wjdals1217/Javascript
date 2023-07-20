@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.이벤트</title>
+    <!--
+        날짜 : 2023/07/20
+        이름 : 최정민
+        내용 : 자바스크립트 이벤트 실습하기
+    -->
+</head>
+<body>
+    <h3>1.이벤트</h3>
+
+    <h4>인라인 방식</h4>
+    <button onclick="btn1Click()">버튼1</button>
+    <button ondblclick="btn2Click()">버튼2</button>
+    <button onmouseup="btn3MouseUp()">버튼3</button>
+
+    <script>
+        // 인라인 모델 방식 - 태그의 이벤트 속성으로 이벤트 처리
+        function btn1Click() {
+            alert('버튼1 클릭...');
+        }
+
+        function btn2Click() {
+            alert('버튼2 더블클릭...');
+        }
+        
+        function btn3MouseUp() {
+            alert('버튼3 마우스업...');
+        }
+    </script>
+    
+    <h4>고전 방식</h4>
+    <button id="btn1">버튼1</button>
+    <button id="btn2">버튼2</button>
+    <button id="btn3">버튼3</button>
+
+    <script>
+        // 고전 이벤트 모델 방식 - 문서객체의 이벤트 속성을 이용
+        const btn1 = document.getElementById('btn1');
+        const btn2 = document.getElementById('btn2');
+        const btn3 = document.getElementById('btn3');
+
+        btn1.onclick = function() {
+            alert('버튼1 클릭...');
+        }
+
+        btn2.ondblclick = () => alert('버튼2 더블클릭...');
+        
+
+        btn3.onmousedown = () => alert('버튼3 마우스다운...');
+        
+
+    </script>
+    
+    <h4>표준 이벤트 모델</h4>
+    <button class="btn1">버튼1</button>
+    <button class="btn2">버튼2</button>
+    <button class="btn3">버튼3</button>
+    
+    <script>
+        // 표준 이벤트 모델 방식 - 문서객체의 리스너로 이벤트 처리(호환성)
+        const button1 = document.getElementsByClassName('btn1')[0];
+        const button2 = document.getElementsByClassName('btn2')[0];
+        const button3 = document.getElementsByClassName('btn3')[0];
+
+        button1.addEventListener('click', function(){
+            alert('버튼1 클릭...');
+        });
+       
+        button2.addEventListener('dblclick', () => {
+            alert('버튼2 더블클릭...');
+        });
+       
+        button3.addEventListener('mouseenter', ()=>{
+            alert('버튼3 마우스엔터...');
+        });
+    </script>
+    
+</body>
+</html>
