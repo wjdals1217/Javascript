@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3.부산동물병원</title>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=15c0b1a911aa2285ccdc4d2ffeb2d8f7"></script> 
+     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=15c0b1a911aa2285ccdc4d2ffeb2d8f7"></script>
     <script>
 
         window.onload = function(){
-            var mapContainer = document.getElementById('map1'), // 지도를 표시할 div 
-            mapOption = { 
-                center: new kakao.maps.LatLng(35.137139564656515, 129.0988744946695), // 지도의 중심좌표
-                level: 3 // 지도의 확대 레벨
-            };
-    
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = { 
+                    center: new kakao.maps.LatLng(35.137139564656515, 129.0988744946695), // 지도의 중심좌표
+                    level: 3 // 지도의 확대 레벨
+                };
+        };
         // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
         var map = new kakao.maps.Map(mapContainer, mapOption); 
-        
+            
         const url = 'https://apis.data.go.kr/6260000/BusanAnimalHospService/getTblAnimalHospital?serviceKey=5rP1mrvV3ovpz6CeALxEoFOwRoMl%2FsAKFlP4C%2BYJR%2FQOntAzZlI3H7N0wmhI9mNVMUfSfHEgVfovVflAKNvZqg%3D%3D&pageNo=1&numOfRows=300&resultType=json';
         fetch(url)
             .then((res)=>res.json())
@@ -31,14 +31,17 @@
                         map: map, // 마커를 표시할 지도
                         position:  new kakao.maps.LatLng(item.lat, item.lon), // 마커를 표시할 위치
                     });
+                    marker.setMap(map);
+
                     var infowindow = new kakao.maps.InfoWindow({
-                        content: '<div style="padding:5px;">'+item.animal_hospital+'</div>',// 인포윈도우에 표시할 내용
+                        content: '<div style="padding:5px;">'+items.animal_hospital+'</div>',// 인포윈도우에 표시할 내용
                         removable : true
                     });
                     kakao.maps.event.addListener(marker, 'click', clickListener(map, marker, infowindow));
+                    
 
                 }
-                // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+                //인포윈도우를 표시하는 클로저를 만드는 함수입니다 
                 function clickListener(map, marker, infowindow) {
                     return function() {
                         infowindow.open(map, marker);
@@ -49,13 +52,13 @@
                 }
                     
             });
-        };
     </script>
 
     </head>
 <body>
     <h3>3.부산동물병원 실습</h3>
     <h4>부산 동물병원</h4>
+    <div id="map" style="width:1200px;height:720px;margin: 0 auto;"></div>
     
 </body>
 </html>
